@@ -2,8 +2,10 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Auth } from '../../common/decorators/auth.decorator';
 
 @Controller()
+@Auth()
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
@@ -26,5 +28,4 @@ export class UsersController {
   deleteUser(@Param('id') id: string) {
     return this.usersService.deleteUser(id);
   }
-
 }
